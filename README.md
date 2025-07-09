@@ -18,7 +18,7 @@ Este proyecto contiene pruebas automatizadas para la aplicación SauceDemo utili
 1. Clonar repositorio y entrar al directorio:
 
    ```bash
-   git clone <url-del-repositorio>
+   git clone https://github.com/Cristian-Infante/Makers-TT-QA
    cd "Makers TT QA"
    ```
 
