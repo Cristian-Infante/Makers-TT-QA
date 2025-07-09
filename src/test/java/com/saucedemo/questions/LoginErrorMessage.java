@@ -2,11 +2,8 @@ package com.saucedemo.questions;
 
 import net.serenitybdd.screenplay.Actor;
 import net.serenitybdd.screenplay.Question;
-import net.serenitybdd.screenplay.questions.Text;
-import net.serenitybdd.screenplay.targets.Target;
-import net.serenitybdd.screenplay.waits.WaitUntil;
-
-import static net.serenitybdd.screenplay.matchers.WebElementStateMatchers.isVisible;
+import net.serenitybdd.screenplay.playwright.Target;
+import net.serenitybdd.screenplay.playwright.questions.Text;
 
 public class LoginErrorMessage implements Question<String> {
 
@@ -16,14 +13,8 @@ public class LoginErrorMessage implements Question<String> {
 
     @Override
     public String answeredBy(Actor actor) {
-        actor.attemptsTo(
-                WaitUntil.the(ERROR_CONTAINER, isVisible())
-                        .forNoMoreThan(5).seconds()
-        );
         return Text.of(ERROR_CONTAINER).answeredBy(actor);
     }
 
-    public static LoginErrorMessage displayed() {
-        return new LoginErrorMessage();
-    }
+    public static LoginErrorMessage displayed() { return new LoginErrorMessage(); }
 }

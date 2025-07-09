@@ -1,20 +1,26 @@
 package com.saucedemo.steps;
 
+import io.cucumber.java.After;
 import io.cucumber.java.Before;
-import net.serenitybdd.annotations.Managed;
-import net.serenitybdd.screenplay.abilities.BrowseTheWeb;
 import net.serenitybdd.screenplay.actors.OnStage;
 import net.serenitybdd.screenplay.actors.OnlineCast;
-import org.openqa.selenium.WebDriver;
+import net.serenitybdd.screenplay.playwright.abilities.BrowseTheWebWithPlaywright;
 
 public class Hooks {
 
-    @Managed(driver = "chrome")
-    WebDriver driver;
+    private BrowseTheWebWithPlaywright ability;
 
     @Before
     public void setTheStage() {
+        ability = BrowseTheWebWithPlaywright.usingTheDefaultConfiguration();
         OnStage.setTheStage(new OnlineCast());
-        OnStage.theActorCalled("User").can(BrowseTheWeb.with(driver));
+        OnStage.theActorCalled("User").can(ability);
+    }
+
+    @After
+    public void tearDown() {
+        if (ability != null && ability.getBrowser() != null) {
+            ability.getBrowser().close();
+        }
     }
 }

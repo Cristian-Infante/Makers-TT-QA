@@ -3,11 +3,7 @@ package com.saucedemo.tasks;
 import net.serenitybdd.screenplay.Actor;
 import net.serenitybdd.screenplay.Task;
 import net.serenitybdd.screenplay.Tasks;
-import net.serenitybdd.screenplay.targets.Target;
-import net.serenitybdd.screenplay.actions.Click;
-import net.serenitybdd.screenplay.waits.WaitUntil;
-
-import static net.serenitybdd.screenplay.matchers.WebElementStateMatchers.isClickable;
+import net.serenitybdd.screenplay.playwright.interactions.Click;
 
 public class AddItemToCart implements Task {
 
@@ -19,13 +15,14 @@ public class AddItemToCart implements Task {
 
     @Override
     public <T extends Actor> void performAs(T actor) {
-        Target addButton = Target.the("add to cart button")
-            .locatedBy("//div[text()='{0}']/ancestor::div[@class='inventory_item']//button")
-            .of(productName);
+
+        String locator = String.format(
+                "//div[text()='%s']/ancestor::div[@class='inventory_item']//button",
+                productName
+        );
 
         actor.attemptsTo(
-            WaitUntil.the(addButton, isClickable()).forNoMoreThan(5).seconds(),
-            Click.on(addButton)
+                Click.on(locator)
         );
     }
 
