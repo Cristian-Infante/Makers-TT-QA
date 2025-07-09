@@ -19,7 +19,7 @@ Este proyecto contiene pruebas automatizadas para la aplicación SauceDemo utili
 
    ```bash
    git clone https://github.com/Cristian-Infante/Makers-TT-QA
-   cd "Makers TT QA"
+   cd "Makers-TT-QA"
    ```
 
 2. Descargar dependencias:
