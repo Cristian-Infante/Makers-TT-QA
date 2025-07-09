@@ -18,7 +18,6 @@ public class AddItemToCart implements Task {
     @Override
     public <T extends Actor> void performAs(T actor) {
 
-        // "Sauce Labs Backpack" → "sauce-labs-backpack"
         String slug = productName.toLowerCase()
                 .replaceAll("[^a-z0-9]+", "-")
                 .replaceAll("^-|-$", "");
